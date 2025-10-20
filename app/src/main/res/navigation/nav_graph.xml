@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.chiennc.base.app.ui.fragment.splash.SplashFragment"
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.chiennc.base.app.ui.fragment.home.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_iapFragment"
+            app:destination="@id/iapFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_changeServerFragment"
+            app:destination="@id/changeServerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/changeServerFragment"
+        android:name="com.chiennc.base.app.ui.fragment.change_server.ChangeServerFragment"
+        android:label="ChangeServerFragment" />
+    <fragment
+        android:id="@+id/iapFragment"
+        android:name="com.chiennc.base.app.ui.fragment.iap.IapFragment"
+        android:label="IapFragment" />
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.chiennc.base.app.ui.fragment.result.ResultFragment"
+        android:label="ResultFragment" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.chiennc.base.app.ui.fragment.setting.SettingFragment"
+        android:label="SettingFragment" >
+        <action
+            android:id="@+id/action_settingFragment_to_iapFragment"
+            app:destination="@id/iapFragment" />
+    </fragment>
+</navigation>
