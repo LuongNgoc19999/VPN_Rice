@@ -26,4 +26,16 @@
     <string name="rate_us">Rate Us</string>
     <string name="share_this_app">Share this app</string>
     <string name="privacy_policy">Privacy Policy</string>
+    <string name="get_premium_today">Get premium today</string>
+    <string name="remove_ads_and_unlock_all_location">Remove ads and unlock all location</string>
+    <string name="then_122000_week">then 122000đ/week</string>
+    <string name="_3_days_free_trial"><![CDATA[3 days Free Trial    >]]></string>
+    <string name="anonymous">Anonymous</string>
+    <string name="hide_your_ip_anonymous_surfing">Hide your ip , anonymous surfing</string>
+    <string name="remove_ads">remove ads</string>
+    <string name="have_fun_surfing_without_annoying_ads">Have fun surfing without annoying ads</string>
+    <string name="fast">Fast</string>
+    <string name="up_to_1000_mb_s_bandwith_to_explore">Up to 1000 Mb/s bandwith to explore</string>
+    <string name="secure">Secure</string>
+    <string name="transfer_traffic_via_encrypted_tunnel">Transfer traffic via encrypted tunnel</string>
 </resources>
