@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="image"
+            type="Integer" />
+
+        <variable
+            name="text"
+            type="Integer" />
+
+        <variable
+            name="onClick"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_36sdp"
+        android:onClick="@{onClick}">
+
+        <ImageView
+            drawableRes="@{image}"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_share"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            style="@style/font_400_14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_36sdp"
+            android:gravity="center"
+            android:text="@{text}"
+            android:textColor="@color/_121830"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@string/privacy_policy" />
+
+        <ImageView
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/ic_arrow_right_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

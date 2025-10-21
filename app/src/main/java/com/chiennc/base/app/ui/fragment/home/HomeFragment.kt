@@ -10,12 +10,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeNavigation>() {
     override fun getLayoutId(): Int = R.layout.fragment_home
     private val dialogRequest by lazy {
         DialogRequest().apply {
-            callback = {}
+            callback = {
+                navigation.navToResult()
+            }
         }
     }
     private val dialogExtentTime by lazy {
         DialogExtentTime().apply {
-            callback = {}
+            callback = {
+
+            }
         }
     }
 
@@ -34,7 +38,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeNavigation>() {
             if (!dialogRequest.isAdded && isAdded) dialogRequest.show(childFragmentManager)
         }
         binding.btnIap.setOnClickListener {
-            if (!dialogExtentTime.isAdded && isAdded) dialogExtentTime.show(childFragmentManager)
+            navigation.navToIap()
+        }
+        binding.btnSetting.setOnClickListener {
+            navigation.navToSetting()
         }
     }
 

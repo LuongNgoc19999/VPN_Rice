@@ -20,4 +20,10 @@
     <string name="ok_got_it">OK, Got it</string>
     <string name="watch_an_ads_video_to_get_more_5_mins_free_trial">Watch an ads video to get more 5 mins free trial</string>
     <string name="extend_time_connection">Extend time connection</string>
+    <string name="notice">Notice</string>
+    <string name="general">General</string>
+    <string name="feedback">Feedback</string>
+    <string name="rate_us">Rate Us</string>
+    <string name="share_this_app">Share this app</string>
+    <string name="privacy_policy">Privacy Policy</string>
 </resources>
