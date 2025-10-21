@@ -1,16 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".app.ui.fragment.change_server.ChangeServerFragment">
 
-        <!-- TODO: Update blank fragment layout -->
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="change" />
+            android:id="@+id/tvTitle"
+            style="@style/font_500_20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_32sdp"
+            android:text="@string/change_server"
+            android:textColor="@color/_121830"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </FrameLayout>
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_22sdp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvTitle" />
+
+        <EditText
+            android:id="@+id/edtSearch"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_42sdp"
+            android:layout_marginHorizontal="@dimen/_22sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="@drawable/bg_search"
+            android:drawableEnd="@drawable/ic_search"
+            android:hint="@string/search_location"
+            android:paddingStart="@dimen/_20sdp"
+            android:paddingEnd="@dimen/_14sdp"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+        <com.airbnb.epoxy.EpoxyRecyclerView
+            android:id="@+id/ervServer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginVertical="@dimen/_22sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edtSearch"
+            tools:itemCount="10"
+            tools:listitem="@layout/item_server" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

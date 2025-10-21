@@ -7,6 +7,11 @@ plugins {
     alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.kotlin.parcelize)
     alias(libs.plugins.kotlin.serialization)
+    id("androidx.navigation.safeargs.kotlin")
+    id("kotlin-kapt")
+    id("com.jakewharton.butterknife")
+//    kotlin("android")
+//    kotlin("kapt")
 }
 
 android {
@@ -76,15 +81,27 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
 
+    implementation ("com.github.bumptech.glide:glide:4.15.0")
+    kapt ("com.github.bumptech.glide:compiler:4.15.0")
     // Test dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
     // Navigation component
-    implementation ("androidx.navigation:navigation-fragment-ktx:2.8.3")
-    implementation ("androidx.navigation:navigation-ui-ktx:2.8.3")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.8.3")
+    implementation("androidx.navigation:navigation-ui-ktx:2.8.3")
+    implementation("com.intuit.sdp:sdp-android:1.1.1")
 
+    //epoxy
+    implementation("com.airbnb.android:epoxy:4.6.4")
+    kapt ("com.airbnb.android:epoxy-processor:4.6.4")
+    implementation("com.airbnb.android:epoxy-databinding:2.6.0")
+    implementation("androidx.databinding:viewbinding:2.6.0")
     // Nếu bạn dùng Jetpack Compose
     // implementation "androidx.navigation:navigation-compose:$nav_version"
+}
+
+kapt {
+    correctErrorTypes = true
 }

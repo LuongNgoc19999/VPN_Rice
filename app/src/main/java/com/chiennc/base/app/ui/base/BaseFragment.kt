@@ -24,6 +24,12 @@ abstract class BaseFragment<VB : ViewDataBinding, N : BaseNavigation> : Fragment
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+        initObserver()
+        initData()
+    }
     open fun getDataBundle(arguments: Bundle?) {
 
     }

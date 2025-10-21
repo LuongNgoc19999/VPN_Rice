@@ -2,4 +2,22 @@
     <string name="app_name">BaseAndroidProject</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="speedy_vpn">Speedy <b> <font color="#2821FC">VPN</font></b></string>
+    <string name="ads_are_being_shown">Ads are being shown</string>
+    <string name="unisoft_global">Unisoft Global</string>
+    <string name="solving_real_world_business_challenges_for_your_enterprise">Solving real world business challenges for your enterprise</string>
+    <string name="sign_up"><![CDATA[Sign Up >]]></string>
+    <string name="connecting_time">Connecting time</string>
+    <string name="upload">Upload</string>
+    <string name="free_3_days_unlimit">FREE 3 DAYS UNLIMIT</string>
+    <string name="change_server">Change Server</string>
+    <string name="search_location">Search location</string>
+    <string name="connection_request">Connection request</string>
+    <string name="satellite_vpn_wanna_setup_a_vpn_connection_that_allows_it_to_monitor_network_traffic_only_accept_if_you_trust_the_source">Satellite Vpn wanna setup a VPN connection that allows it to monitor network traffic. Only accept if you trust the source.</string>
+    <string name="key_appears_at_the_top_of_your_screen_when_vpn_is_active">“ key “ appears at the top of your screen when VPN is active</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="ok_got_it">OK, Got it</string>
+    <string name="watch_an_ads_video_to_get_more_5_mins_free_trial">Watch an ads video to get more 5 mins free trial</string>
+    <string name="extend_time_connection">Extend time connection</string>
 </resources>
