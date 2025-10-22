@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.VpnService
+import android.util.Log
 import android.view.animation.AnimationUtils
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.core.content.ContextCompat
@@ -14,7 +15,7 @@ import com.chiennc.base.R
 import com.chiennc.base.app.presentation.vpn.VpnIntent
 import com.chiennc.base.app.presentation.vpn.VpnState
 import com.chiennc.base.app.presentation.vpn.VpnViewModel
-import com.chiennc.base.app.service.VpnRiceService
+import com.chiennc.base.app.service.MyVpnService
 import com.chiennc.base.app.ui.base.BaseFragment
 import com.chiennc.base.app.ui.dialog.DialogRequest
 import com.chiennc.base.app.utils.visible
@@ -27,12 +28,16 @@ import kotlinx.coroutines.launch
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeNavigation>() {
     private val vpnStatusReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
-            val status = intent?.getBooleanExtra("status", false)
-            updateStatus()
-            if (status == true) {
-                navigation.navToSucceed()
-            } else if (status == false) {
-                navigation.navToDisconnected()
+            if (intent?.hasExtra("status") == true) {
+                val status = intent.getBooleanExtra("status", false)
+                Log.d("ngoc", "status: $status")
+                updateStatus()
+                if (status) navigation.navToSucceed() else navigation.navToDisconnected()
+            }
+            if (intent?.action == "VPN_SPEED"){
+                val down = intent.getDoubleExtra("download", 0.0)
+                val up = intent.getDoubleExtra("upload", 0.0)
+                Log.d("ngoc", "down: $down, up: $up")
             }
         }
     }
@@ -40,7 +45,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeNavigation>() {
     override fun getLayoutId(): Int = R.layout.fragment_home
     val viewModel: VpnViewModel by viewModels()
     private val dialogRequest by lazy {
-        DialogRequest().apply { callback = { prepareAndStartVpn() } }
+        DialogRequest().apply {
+            callback = {
+                CoroutineScope(Dispatchers.Main).launch {
+                    viewModel.handleIntent(VpnIntent.Loading)
+                    delay(2000)
+                    prepareAndStartVpn()
+                }
+            }
+        }
     }
 
     private val vpnContent = registerForActivityResult(VpnContent()) {
@@ -56,11 +69,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeNavigation>() {
         }
         binding.btnStart.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
-                viewModel.handleIntent(VpnIntent.Loading)
-                delay(2000)
-                if (VpnRiceService.isRunning) stopVpnService()
-                else
+                if (MyVpnService.isRunning) {
+                    viewModel.handleIntent(VpnIntent.Loading)
+                    delay(2000)
+                    stopVpnService()
+                } else {
                     if (!dialogRequest.isAdded && isAdded) dialogRequest.show(childFragmentManager)
+                }
             }
         }
         binding.btnIap.setOnClickListener {
@@ -75,8 +90,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeNavigation>() {
         requireActivity().startService(
             Intent(
                 requireActivity(),
-                VpnRiceService::class.java
-            ).also { it.action = VpnRiceService.ACTION_DISCONNECT })
+                MyVpnService::class.java
+            ).also { it.action = MyVpnService.ACTION_DISCONNECT })
     }
 
     private fun prepareAndStartVpn() {
@@ -87,7 +102,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeNavigation>() {
     }
 
     private fun startVpnService() {
-        val svc = Intent(requireActivity(), VpnRiceService::class.java)
+        val svc = Intent(requireActivity(), MyVpnService::class.java)
         svc.putExtra("server_host", "10.0.2.2")
         svc.putExtra("server_port", 51820)
         requireActivity().startService(svc)
@@ -112,7 +127,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeNavigation>() {
     }
 
     private fun updateStatus() {
-        val running = VpnRiceService.isRunning
+        val running = MyVpnService.isRunning
         if (running) {
             viewModel.handleIntent(VpnIntent.Connect)
         } else {

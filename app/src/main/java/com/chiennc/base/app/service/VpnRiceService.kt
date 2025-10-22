@@ -24,17 +24,18 @@ import kotlin.concurrent.thread
 
 class VpnRiceService : VpnService() {
     companion object {
-        const val ACTION_CONNECT = "studio.attect.demo.vpnservice.CONNECT"
         const val ACTION_DISCONNECT = "studio.attect.demo.vpnservice.DISCONNECT"
 
         @Volatile
         var isRunning = false
     }
+
     private fun sendStatusUpdate() {
         val intent = Intent("VPN_STATUS")
         intent.putExtra("status", isRunning)
         sendBroadcast(intent)
     }
+
     private val TAG = "VpnRiceService"
     private var vpnFd: ParcelFileDescriptor? = null
     private val running = AtomicBoolean(false)
@@ -55,10 +56,6 @@ class VpnRiceService : VpnService() {
             startVpnTunnel(host, port)
             START_STICKY
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 
     private fun buildNotification(text: String): Notification {
@@ -113,22 +110,10 @@ class VpnRiceService : VpnService() {
             // write pcap global header (pcap v2, little endian)
             pcapStream?.write(
                 byteArrayOf(
-                    0xd4.toByte(),
-                    0xc3.toByte(),
-                    0xb2.toByte(),
-                    0xa1.toByte(), // magic
-                    0x02,
-                    0x00,
-                    0x04,
-                    0x00, // version major/minor
-                    0x00,
-                    0x00,
-                    0x00,
-                    0x00, // thiszone
-                    0x00,
-                    0x00,
-                    0x00,
-                    0x00, // sigfigs
+                    0xd4.toByte(), 0xc3.toByte(), 0xb2.toByte(), 0xa1.toByte(), // magic
+                    0x02, 0x00, 0x04, 0x00, // version major/minor
+                    0x00, 0x00, 0x00, 0x00, // thiszone
+                    0x00, 0x00, 0x00, 0x00, // sigfigs
                     0xff.toByte().toInt().and(0xff).toByte(),
                     0xff.toByte().toInt().and(0xff).toByte(),
                     0x00,
@@ -156,7 +141,6 @@ class VpnRiceService : VpnService() {
     }
 
     private fun stopVpnTunnel() {
-        Log.d("ngoc", "stopVpnTunnel")
         running.set(false)
         isRunning = false
         sendStatusUpdate()
@@ -248,7 +232,6 @@ class VpnRiceService : VpnService() {
             stream.write(buf, offset, length)
             stream.flush()
         } catch (e: Exception) {
-            // ignore
         }
     }
 }
