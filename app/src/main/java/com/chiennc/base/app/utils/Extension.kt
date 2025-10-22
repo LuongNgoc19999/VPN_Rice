@@ -3,9 +3,8 @@ package com.chiennc.base.app.utils
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
-import android.view.View
-import java.io.File
 import android.os.Build
+import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
@@ -13,7 +12,16 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import java.io.File
 import java.nio.ByteBuffer
+
+fun View.visible(isVisible: Boolean) {
+    visibility = if (isVisible) View.VISIBLE else View.GONE
+}
+
+fun View.gone(isGone: Boolean) {
+    visibility = if (isGone) View.GONE else View.VISIBLE
+}
 
 fun View.show() {
     visibility = View.VISIBLE

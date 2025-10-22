@@ -10,18 +10,16 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
     id("kotlin-kapt")
     id("com.jakewharton.butterknife")
-//    kotlin("android")
-//    kotlin("kapt")
 }
 
 android {
     namespace = "com.chiennc.base"
-    compileSdk = 36
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.chiennc.base"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 

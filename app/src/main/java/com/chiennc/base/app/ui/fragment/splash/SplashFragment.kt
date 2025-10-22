@@ -1,6 +1,5 @@
 package com.chiennc.base.app.ui.fragment.splash
 
-import android.util.Log
 import android.view.animation.AnimationUtils
 import com.chiennc.base.R
 import com.chiennc.base.app.ui.base.BaseFragment
@@ -17,7 +16,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashNavigation>() {
 
 
     override fun initView() {
-        Log.d("ngoc", "layout: ${R.layout.item_server}")
         val rotateAnimation = AnimationUtils.loadAnimation(context, R.anim.rotate)
         binding.ivLoading.startAnimation(rotateAnimation)
         CoroutineScope(Dispatchers.Main).launch {

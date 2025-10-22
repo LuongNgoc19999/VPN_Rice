@@ -54,6 +54,40 @@
             app:layout_constraintTop_toBottomOf="@id/countingView"
             app:layout_constraintWidth_percent="0.55" />
 
+        <ImageView
+            android:id="@+id/ivFlash"
+            android:layout_width="@dimen/_37sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:src="@drawable/ic_flash"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/btnStart"
+            app:layout_constraintEnd_toEndOf="@id/btnStart"
+            app:layout_constraintStart_toStartOf="@id/btnStart"
+            app:layout_constraintTop_toTopOf="@id/btnStart"
+            app:tint="@color/white" />
+
+        <ImageView
+            android:id="@+id/ivloading"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:src="@drawable/img_loading_home"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/btnStart"
+            app:layout_constraintEnd_toEndOf="@id/btnStart"
+            app:layout_constraintStart_toStartOf="@id/btnStart"
+            app:layout_constraintTop_toTopOf="@id/btnStart" />
+
+        <ImageView
+            android:id="@+id/ivPause"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:src="@drawable/ic_pause"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/btnStart"
+            app:layout_constraintEnd_toEndOf="@id/btnStart"
+            app:layout_constraintStart_toStartOf="@id/btnStart"
+            app:layout_constraintTop_toTopOf="@id/btnStart" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/btnIap"
             android:layout_width="match_parent"
