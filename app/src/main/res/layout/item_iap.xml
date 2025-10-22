@@ -1,6 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <variable
+            name="textTime"
+            type="String" />
+
+        <variable
+            name="totalPrice"
+            type="String" />
+
+        <variable
+            name="price"
+            type="String" />
+
+        <variable
+            name="unit"
+            type="String" />
+
+        <variable
+            name="isSelected"
+            type="Boolean" />
+
+        <variable
+            name="onclick"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_54sdp"
+        android:onClick="@{onclick}"
+        tools:background="@drawable/bg_iap">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_item_iap">
+
+            <TextView
+                android:id="@+id/tvTimePrice"
+                style="@style/font_700_18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_24sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="@{textTime}"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/_1_month" />
+
+            <TextView
+                style="@style/font_400_14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{totalPrice}"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="@id/tvTimePrice"
+                app:layout_constraintTop_toBottomOf="@id/tvTimePrice"
+                tools:text="Total price $9.99" />
+
+            <ImageView
+                android:layout_width="@dimen/_32sdp"
+                android:layout_height="@dimen/_32sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:src="@{isSelected?@drawable/ic_iap_selected:@drawable/ic_iap_not_selected}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_iap_selected" />
+
+            <TextView
+                android:id="@+id/tvPrice"
+                style="@style/font_700_30sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_52sdp"
+                android:text="@{price}"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="9.92" />
+
+            <TextView
+                style="@style/font_500_12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:text="@{unit}"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/tvPrice"
+                app:layout_constraintStart_toStartOf="@id/tvPrice"
+                tools:text="$/Month" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
