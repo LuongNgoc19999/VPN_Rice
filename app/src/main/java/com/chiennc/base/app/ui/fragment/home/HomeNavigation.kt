@@ -25,8 +25,13 @@ class HomeNavigation(val fragment: HomeFragment) : BaseNavigation() {
         navigateTo(R.id.homeFragment, direction)
     }
 
-    fun navToResult() {
-        val direction = HomeFragmentDirections.actionHomeFragmentToResultFragment()
+    fun navToSucceed() {
+        val direction = HomeFragmentDirections.actionHomeFragmentToSucceedFragment()
+        navigateTo(R.id.homeFragment, direction)
+    }
+
+    fun navToDisconnected() {
+        val direction = HomeFragmentDirections.actionHomeFragmentToDisconnectedFragment()
         navigateTo(R.id.homeFragment, direction)
     }
 }

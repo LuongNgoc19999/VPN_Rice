@@ -39,4 +39,13 @@
     <string name="secure">Secure</string>
     <string name="transfer_traffic_via_encrypted_tunnel">Transfer traffic via encrypted tunnel</string>
     <string name="_1_month">1 month</string>
+    <string name="succeed">Succeed!</string>
+    <string name="disconnected">Disconnected!</string>
+    <string name="extend_the_time">Extend the time</string>
+    <string name="watch_an_ads">Watch an ads</string>
+    <string name="_5_min">+5 min</string>
+    <string name="extend_extra">Extend Extra</string>
+    <string name="_30_min">+30 min</string>
+    <string name="not_ideal_speed">Not ideal speed</string>
+    <string name="click_to_replace">Click to replace</string>
 </resources>

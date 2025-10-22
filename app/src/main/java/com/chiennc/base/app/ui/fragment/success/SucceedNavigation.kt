@@ -1,9 +1,9 @@
-package com.chiennc.base.app.ui.fragment.iap
+package com.chiennc.base.app.ui.fragment.success
 
 import com.chiennc.base.app.ui.base.BaseFragment
 import com.chiennc.base.app.ui.base.BaseNavigation
 
-class IapNavigation(val fragment: IapFragment) : BaseNavigation() {
+class SucceedNavigation(val fragment: SucceedFragment) : BaseNavigation() {
 
     override fun fragment(): BaseFragment<*, *> {
         return fragment

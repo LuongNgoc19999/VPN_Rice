@@ -6,7 +6,7 @@
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.chiennc.base.app.ui.fragment.splash.SplashFragment"
-        android:label="SplashFragment" >
+        android:label="SplashFragment">
         <action
             android:id="@+id/action_splashFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.chiennc.base.app.ui.fragment.home.HomeFragment"
-        android:label="HomeFragment" >
+        android:label="HomeFragment">
         <action
             android:id="@+id/action_homeFragment_to_iapFragment"
             app:destination="@id/iapFragment" />
@@ -25,8 +25,11 @@
             android:id="@+id/action_homeFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_resultFragment"
-            app:destination="@id/resultFragment" />
+            android:id="@+id/action_homeFragment_to_succeedFragment"
+            app:destination="@id/succeedFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_disconnectedFragment"
+            app:destination="@id/disconnectedFragment" />
     </fragment>
     <fragment
         android:id="@+id/changeServerFragment"
@@ -37,13 +40,17 @@
         android:name="com.chiennc.base.app.ui.fragment.iap.IapFragment"
         android:label="IapFragment" />
     <fragment
-        android:id="@+id/resultFragment"
-        android:name="com.chiennc.base.app.ui.fragment.result.ResultFragment"
-        android:label="ResultFragment" />
+        android:id="@+id/succeedFragment"
+        android:name="com.chiennc.base.app.ui.fragment.success.SucceedFragment"
+        android:label="SucceedFragment" />
+    <fragment
+        android:id="@+id/disconnectedFragment"
+        android:name="com.chiennc.base.app.ui.fragment.disconnected.DisconnectedFragment"
+        android:label="DisconnectedFragment" />
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.chiennc.base.app.ui.fragment.setting.SettingFragment"
-        android:label="SettingFragment" >
+        android:label="SettingFragment">
         <action
             android:id="@+id/action_settingFragment_to_iapFragment"
             app:destination="@id/iapFragment" />

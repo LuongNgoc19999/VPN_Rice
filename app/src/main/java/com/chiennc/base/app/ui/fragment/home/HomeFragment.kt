@@ -2,7 +2,6 @@ package com.chiennc.base.app.ui.fragment.home
 
 import com.chiennc.base.R
 import com.chiennc.base.app.ui.base.BaseFragment
-import com.chiennc.base.app.ui.dialog.DialogExtentTime
 import com.chiennc.base.app.ui.dialog.DialogRequest
 import com.chiennc.base.databinding.FragmentHomeBinding
 
@@ -11,20 +10,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeNavigation>() {
     private val dialogRequest by lazy {
         DialogRequest().apply {
             callback = {
-                navigation.navToResult()
-            }
-        }
-    }
-    private val dialogExtentTime by lazy {
-        DialogExtentTime().apply {
-            callback = {
-
+                navigation.navToSucceed()
             }
         }
     }
 
     override val navigation: HomeNavigation = HomeNavigation(this)
-
 
     override fun initView() {
         binding.serverView.setData()
