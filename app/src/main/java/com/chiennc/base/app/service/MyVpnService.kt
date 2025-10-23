@@ -1,5 +1,6 @@
 package com.chiennc.base.app.service
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.VpnService
 import android.os.ParcelFileDescriptor
@@ -15,6 +16,7 @@ import java.io.FileOutputStream
 import java.net.InetSocketAddress
 import java.net.Socket
 
+@SuppressLint("VpnServicePolicy")
 class MyVpnService : VpnService() {
     companion object {
         const val TIME = 2 * 60 * 1000//minute (milisecond)

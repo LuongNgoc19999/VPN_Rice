@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.VpnService
-import android.util.Log
 import android.view.animation.AnimationUtils
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.core.content.ContextCompat
@@ -48,7 +47,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeNavigation>() {
                 val up = intent.getDoubleExtra(KEY_UPLOAD, 0.0)
                 val time = intent.getLongExtra(KEY_TIME, 0L)
                 updateData(up, down, time)
-                Log.d("ngoc", "down: $down, up: $up, time: $time")
             }
         }
     }

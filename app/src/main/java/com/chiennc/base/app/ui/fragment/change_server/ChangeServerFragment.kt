@@ -2,7 +2,6 @@ package com.chiennc.base.app.ui.fragment.change_server
 
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import androidx.fragment.app.viewModels
 import com.chiennc.base.R
 import com.chiennc.base.app.presentation.change_server.ChangeServerIntent
@@ -26,7 +25,6 @@ class ChangeServerFragment : BaseFragment<FragmentChangeServerBinding, ChangeSer
                     id(it)
                     isSelected(it == viewModel.state.value.index)
                     onClick { _ ->
-                        Log.d("ngoc", "index: $it, ${viewModel.state.value.index}")
                         viewModel.handleIntent(ChangeServerIntent.ChangeServer(it))
                     }
                 }
@@ -40,7 +38,6 @@ class ChangeServerFragment : BaseFragment<FragmentChangeServerBinding, ChangeSer
     override fun initObserver() {
         CoroutineScope(Dispatchers.Main).launch {
             viewModel.state.collect { state ->
-                Log.d("ngoc", "state: ${state.index}")
                 binding.ervServer.requestModelBuild()
             }
         }

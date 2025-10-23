@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.util.Log
 import androidx.core.content.ContextCompat
 import com.chiennc.base.R
 import com.chiennc.base.app.service.MyVpnService
@@ -30,7 +29,6 @@ class SucceedFragment : BaseFragment<FragmentSucceedBinding, SucceedNavigation>(
                 val up = intent.getDoubleExtra(KEY_UPLOAD, 0.0)
                 val time = intent.getLongExtra(KEY_TIME, 0L)
                 binding.timeView.setData(up, down, time)
-                Log.d("ngoc", "down: $down, up: $up, time: $time")
             }
         }
     }

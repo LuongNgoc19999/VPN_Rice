@@ -13,7 +13,6 @@ class ChangeServerViewModel : ViewModel() {
     fun handleIntent(intent: ChangeServerIntent){
         when(intent){
             is ChangeServerIntent.ChangeServer ->{
-                Log.d("ngoc", "ChangeServer")
                 _state.value = _state.value.copy(index = intent.index)
             }
         }
