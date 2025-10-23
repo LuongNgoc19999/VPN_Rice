@@ -109,7 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginStart="@dimen/_16sdp"
-                android:text="@string/upload"
+                android:text="@string/download"
                 android:textColor="@color/ff1b2f"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHeight_percent="0.5"

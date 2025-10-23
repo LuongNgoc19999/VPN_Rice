@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="is5min"
+            type="Boolean" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -28,15 +36,17 @@
                 android:textColor="@color/_121830" />
 
             <TextView
+
                 style="@style/font_400_14sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_12sdp"
-                android:gravity="center"
                 android:layout_marginBottom="@dimen/_20sdp"
-                android:text="@string/watch_an_ads_video_to_get_more_5_mins_free_trial"
-                android:textColor="@color/_121830" />
+                android:gravity="center"
+                android:text="@{is5min?@string/watch_an_ads_video_to_get_more_5_mins_free_trial:@string/watch_an_ads_video_to_get_more_30_mins_free_trial}"
+                android:textColor="@color/_121830"
+                tools:text="@string/watch_an_ads_video_to_get_more_5_mins_free_trial" />
 
             <TextView
                 android:id="@+id/btnOK"

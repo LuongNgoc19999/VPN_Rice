@@ -16,6 +16,11 @@ import com.chiennc.base.app.presentation.vpn.VpnIntent
 import com.chiennc.base.app.presentation.vpn.VpnState
 import com.chiennc.base.app.presentation.vpn.VpnViewModel
 import com.chiennc.base.app.service.MyVpnService
+import com.chiennc.base.app.service.MyVpnService.Companion.KEY_DOWNLOAD
+import com.chiennc.base.app.service.MyVpnService.Companion.KEY_STATUS
+import com.chiennc.base.app.service.MyVpnService.Companion.KEY_TIME
+import com.chiennc.base.app.service.MyVpnService.Companion.KEY_TOTAL_TIME
+import com.chiennc.base.app.service.MyVpnService.Companion.KEY_UPLOAD
 import com.chiennc.base.app.ui.base.BaseFragment
 import com.chiennc.base.app.ui.dialog.DialogRequest
 import com.chiennc.base.app.utils.visible
@@ -28,16 +33,22 @@ import kotlinx.coroutines.launch
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeNavigation>() {
     private val vpnStatusReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
-            if (intent?.hasExtra("status") == true) {
-                val status = intent.getBooleanExtra("status", false)
-                Log.d("ngoc", "status: $status")
+            if (intent?.hasExtra(KEY_STATUS) == true) {
+                val status = intent.getBooleanExtra(KEY_STATUS, false)
                 updateStatus()
-                if (status) navigation.navToSucceed() else navigation.navToDisconnected()
+                if (status) navigation.navToSucceed() else {
+                    if (intent.hasExtra(KEY_TOTAL_TIME)) {
+                        val totalTime = intent.getLongExtra(KEY_TOTAL_TIME, 0)
+                        navigation.navToDisconnected(totalTime)
+                    }
+                }
             }
-            if (intent?.action == "VPN_SPEED"){
-                val down = intent.getDoubleExtra("download", 0.0)
-                val up = intent.getDoubleExtra("upload", 0.0)
-                Log.d("ngoc", "down: $down, up: $up")
+            if (intent?.hasExtra(KEY_TIME) == true) {
+                val down = intent.getDoubleExtra(KEY_DOWNLOAD, 0.0)
+                val up = intent.getDoubleExtra(KEY_UPLOAD, 0.0)
+                val time = intent.getLongExtra(KEY_TIME, 0L)
+                updateData(up, down, time)
+                Log.d("ngoc", "down: $down, up: $up, time: $time")
             }
         }
     }
@@ -115,36 +126,42 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeNavigation>() {
     }
 
     fun handleChangeState(state: VpnState) {
-        binding.ivloading.visible(state == VpnState.Loading)
-        binding.ivFlash.visible(state == VpnState.Disconnect)
-        binding.ivPause.visible(state == VpnState.Connect)
-        if (state == VpnState.Loading) {
-            val rotateAnimation = AnimationUtils.loadAnimation(context, R.anim.rotate)
-            binding.ivloading.startAnimation(rotateAnimation)
-        } else {
-            binding.ivloading.clearAnimation()
+        binding.ivloading.visible(state is VpnState.Loading)
+        binding.ivFlash.visible(state is VpnState.Disconnect)
+        binding.ivPause.visible(state is VpnState.Connect)
+        when (state) {
+            is VpnState.Connect -> {
+                binding.ivloading.clearAnimation()
+                binding.countingView.setData(state.up, state.down, state.time)
+            }
+
+            is VpnState.Disconnect -> {
+                binding.ivloading.clearAnimation()
+            }
+
+            VpnState.Loading -> {
+                val rotateAnimation = AnimationUtils.loadAnimation(context, R.anim.rotate)
+                binding.ivloading.startAnimation(rotateAnimation)
+            }
         }
     }
 
     private fun updateStatus() {
         val running = MyVpnService.isRunning
-        if (running) {
-            viewModel.handleIntent(VpnIntent.Connect)
-        } else {
-            viewModel.handleIntent(VpnIntent.Disconnect)
-        }
+        if (running) viewModel.handleIntent(VpnIntent.Connect())
+        else viewModel.handleIntent(VpnIntent.Disconnect())
     }
+
+    private fun updateData(up: Double, down: Double, time: Long) =
+        viewModel.handleIntent(VpnIntent.Connect(up, down, time))
 
     override fun initData() {}
 
     override fun onStart() {
         super.onStart()
-        val filter = IntentFilter("VPN_STATUS")
+        val filter = IntentFilter(MyVpnService.ACTION_VPN_STATUS)
         ContextCompat.registerReceiver(
-            requireContext(),
-            vpnStatusReceiver,
-            filter,
-            ContextCompat.RECEIVER_EXPORTED
+            requireContext(), vpnStatusReceiver, filter, ContextCompat.RECEIVER_EXPORTED
         )
     }
 
@@ -155,12 +172,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeNavigation>() {
     }
 
     class VpnContent : ActivityResultContract<Intent, Boolean>() {
-        override fun createIntent(context: Context, input: Intent): Intent {
-            return input
-        }
-
-        override fun parseResult(resultCode: Int, intent: Intent?): Boolean {
-            return resultCode == RESULT_OK
-        }
+        override fun createIntent(context: Context, input: Intent): Intent = input
+        override fun parseResult(resultCode: Int, intent: Intent?): Boolean =
+            resultCode == RESULT_OK
     }
 }

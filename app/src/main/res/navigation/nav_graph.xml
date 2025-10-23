@@ -46,7 +46,14 @@
     <fragment
         android:id="@+id/disconnectedFragment"
         android:name="com.chiennc.base.app.ui.fragment.disconnected.DisconnectedFragment"
-        android:label="DisconnectedFragment" />
+        android:label="DisconnectedFragment" >
+        <action
+            android:id="@+id/action_disconnectedFragment_to_changeServerFragment"
+            app:destination="@id/changeServerFragment" />
+        <argument
+            android:name="totalTime"
+            app:argType="long" />
+    </fragment>
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.chiennc.base.app.ui.fragment.setting.SettingFragment"

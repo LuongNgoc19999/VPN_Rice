@@ -1,10 +1,12 @@
 package com.chiennc.base.app.ui.fragment.disconnected
 
+import androidx.navigation.fragment.navArgs
 import com.chiennc.base.R
 import com.chiennc.base.app.ui.base.BaseFragment
 import com.chiennc.base.databinding.FragmentDisconnectedBinding
 
 class DisconnectedFragment : BaseFragment<FragmentDisconnectedBinding, DisconnectedNavigation>() {
+    val args by navArgs<DisconnectedFragmentArgs>()
     override fun getLayoutId(): Int = R.layout.fragment_disconnected
 
     override val navigation: DisconnectedNavigation = DisconnectedNavigation(this)
@@ -14,7 +16,10 @@ class DisconnectedFragment : BaseFragment<FragmentDisconnectedBinding, Disconnec
         binding.ivBack.setOnClickListener {
             navigation.popBackStack()
         }
-        binding.timeView.hideTransmit()
+        binding.btnReplace.setOnClickListener {
+            navigation.navToChangeServer()
+        }
+        binding.timeView.hideTransmit(args.totalTime)
     }
 
     override fun initObserver() {

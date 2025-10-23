@@ -30,8 +30,8 @@ class HomeNavigation(val fragment: HomeFragment) : BaseNavigation() {
         navigateTo(R.id.homeFragment, direction)
     }
 
-    fun navToDisconnected() {
-        val direction = HomeFragmentDirections.actionHomeFragmentToDisconnectedFragment()
+    fun navToDisconnected(totalTime: Long) {
+        val direction = HomeFragmentDirections.actionHomeFragmentToDisconnectedFragment(totalTime)
         navigateTo(R.id.homeFragment, direction)
     }
 }
