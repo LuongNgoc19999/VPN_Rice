@@ -1,7 +1,11 @@
 package com.chiennc.base.app.utils
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.net.NetworkInfo
 import android.net.Uri
 import android.os.Build
 import android.view.View
@@ -35,11 +39,25 @@ fun View.hide() {
     visibility = View.INVISIBLE
 }
 
+fun Context.isNetworkAvailable(): Boolean {
+    val cm: ConnectivityManager =
+        getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        val cap: NetworkCapabilities = cm.getNetworkCapabilities(cm.activeNetwork) ?: return false
+        return cap.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+    } else
+        for (n in cm.allNetworks) {
+            val nInfo: NetworkInfo? = cm.getNetworkInfo(n)
+            if (nInfo != null && nInfo.isConnected) return true
+        }
+    return false
+}
+
 fun AppCompatActivity.hideSystemUI() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         val controller = WindowInsetsControllerCompat(window, window.decorView)
-        controller.hide(WindowInsetsCompat.Type.systemBars()) 
+        controller.hide(WindowInsetsCompat.Type.systemBars())
         controller.systemBarsBehavior =
             WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
     } else {

@@ -29,16 +29,6 @@
         </activity>
 
         <service
-            android:name=".app.service.VpnRiceService"
-            android:exported="true"
-            android:foregroundServiceType="dataSync|connectedDevice"
-            android:permission="android.permission.BIND_VPN_SERVICE"
-            tools:ignore="ForegroundServicePermission">
-            <intent-filter>
-                <action android:name="android.net.VpnService" />
-            </intent-filter>
-        </service>
-        <service
             android:name=".app.service.MyVpnService"
             android:exported="true"
             android:foregroundServiceType="dataSync|connectedDevice"
