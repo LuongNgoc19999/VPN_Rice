@@ -17,15 +17,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BaseAndroidProject">
-
         <activity
-            android:name=".app.ui.MainActivity"
+            android:name=".app.ui.mqtt.MqttActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".app.ui.MainActivity"
+            android:exported="true">
         </activity>
 
         <service

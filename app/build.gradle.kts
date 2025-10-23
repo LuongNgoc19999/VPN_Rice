@@ -96,6 +96,9 @@ dependencies {
     kapt ("com.airbnb.android:epoxy-processor:4.6.4")
     implementation("com.airbnb.android:epoxy-databinding:2.6.0")
     implementation("androidx.databinding:viewbinding:2.6.0")
+    //mqtt
+    implementation("org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5")
+    implementation("org.eclipse.paho:org.eclipse.paho.android.service:1.1.1")
     // Nếu bạn dùng Jetpack Compose
     // implementation "androidx.navigation:navigation-compose:$nav_version"
 }
